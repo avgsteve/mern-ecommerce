@@ -1,0 +1,43 @@
+cmd: cd frontend
+
+cmd: npm run build
+
+cmd: heroku login
+
+cmd: heroku create appname
+
+#create Procfile in root folder
+
+   web: node backend/server.js
+
+#in package.json 
+
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
+
+等於 執行  
+npm install --prefix frontend 
+npm run build --prefix frontend 
+這兩個指令
+
+# 到 https://dashboard.heroku.com/apps 看剛剛建立的project清單
+
+https://dashboard.heroku.com/apps/
+
+# 進入剛建立的專案頁面之後會看到教學
+
+逐步執行指令
+
+heroku login
+heroku git:clone -a mern-ecommerce-p
+cd mern-ecommerce-p
+git add .
+git commit -am "make it better"
+git push heroku master
+
+# 之後有更新的話就執行
+
+git push heroku master
+來更新檔案
+
+# 執行 heroku logs --tail
+ 看log
