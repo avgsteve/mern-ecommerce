@@ -1,7 +1,8 @@
 # MERN Stack eCommerce Platform
 
-Live demo: https://dashboard.heroku.com/apps/mern-ecommerce-p
+Live demo: https://mern-ecommerce-p.herokuapp.com/
 (Might take a while to load after a period of inactivity due to the use of free tier of website deployment, 一開始讀取時間可能會久一點，因為使用免費的網站發布選項，所以每隔一段時間沒有訪客進入網站的話，就會進入休眠狀態)
+
 
 Update 更新內容:
 
