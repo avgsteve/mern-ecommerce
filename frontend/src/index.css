@@ -1,52 +1,86 @@
 main {
-  min-height: 80vh;
+    min-height: 80vh;
 }
 
 h3 {
-  padding: 1rem 0;
+    padding: 1rem 0;
 }
 
 h1 {
-  font-size: 1.8rem;
-  padding: 1rem 0;
+    font-size: 1.8rem;
+    padding: 1rem 0;
 }
 
 h2 {
-  font-size: 1.4rem;
-  padding: 0.5rem 0;
+    font-size: 1.4rem;
+    padding: 0.5rem 0;
 }
 
 .rating span {
-  margin: 0.1rem;
+    margin: 0.1rem;
 }
 
 /* carousel */
 
 .carousel {
-  border-radius: 10px;
+    border-radius: 10px;
 }
 
 
 .carousel-item-next,
 .carousel-item-prev,
 .carousel-item.active {
-  display: flex;
+    display: flex;
 }
+
 .carousel-caption {
-  position: absolute;
-  top: 0;
+    /* position: absolute; */
+    /* bottom: 20px; */
+    /* right: 15%; */
+    /* left: 15%; */
+
+    /* overwrite bootstrap setting: bottom, position */
+
+    bottom: unset;
+    position: unset;
+    z-index: 10;
+    padding-top: 10px;
+    /* padding-bottom: 20px; */
+    color: #fff;
+    text-align: center;
 }
 
 .carousel-caption h2 {
-  color: #fff;
+    color: #fff;
+    margin: 0px 10px 0px;
 }
 
 .carousel img {
-  height: 300px;
-  padding: 30px;
-  margin: 40px;
-  border-radius: 37px;
+    /* height: 300px;
+    padding: 30px; */
+    /* margin: 40px; */
+    /* margin: 40px 0 30px;
+    border-radius: 37px; */
+
+    /* height: 300px; */
+    padding: 1px 20px 27px;
+    /* margin: 40px; */
+    margin: 0 0 30px;
+    border-radius: 8px;
+
 }
+
+/* The <Link> Component in Carousel (ProductCarousel.js)*/
 .carousel a {
-  margin: 0 auto;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+
+@media screen and (max-width:768px) {
+    .carousel-inner {
+        min-height: 480px;
+    }
+
 }
