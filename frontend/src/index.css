@@ -21,6 +21,12 @@ h2 {
 }
 
 /* carousel */
+
+.carousel {
+  border-radius: 10px;
+}
+
+
 .carousel-item-next,
 .carousel-item-prev,
 .carousel-item.active {
@@ -39,7 +45,7 @@ h2 {
   height: 300px;
   padding: 30px;
   margin: 40px;
-  border-radius: 50%;
+  border-radius: 37px;
 }
 .carousel a {
   margin: 0 auto;
