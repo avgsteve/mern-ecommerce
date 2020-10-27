@@ -41,14 +41,17 @@ export const login = (email, password) => async (dispatch) => {
 
     const { data } = await axios.post(
       "/api/users/login",
-      { email, password }
+      {
+        email,
+        password,
+      }
       // axiosHeaderConfig
     );
 
     /*
-    If login is successful, will set state to :
-    { loading: false, userInfo: action.payload };
-     */
+        If login is successful, will set state to :
+        { loading: false, userInfo: action.payload };
+         */
     dispatch({
       type: USER_LOGIN_SUCCESS,
       payload: data,
@@ -57,9 +60,9 @@ export const login = (email, password) => async (dispatch) => {
     localStorage.setItem("userInfo", JSON.stringify(data));
   } catch (error) {
     /*
-    If login fails, will set state to :
-    { loading: false, error: action.payload };
-     */
+        If login fails, will set state to :
+        { loading: false, error: action.payload };
+         */
     dispatch({
       type: USER_LOGIN_FAIL,
       // used for error message
@@ -75,12 +78,20 @@ export const logout = () => (dispatch) => {
   localStorage.removeItem("userInfo");
   // reset user state in userReducers:
   // state = { user: {} } by returning {}
-  dispatch({ type: USER_LOGOUT });
-  dispatch({ type: USER_DETAILS_RESET });
-  dispatch({ type: ORDER_LIST_MY_RESET });
+  dispatch({
+    type: USER_LOGOUT,
+  });
+  dispatch({
+    type: USER_DETAILS_RESET,
+  });
+  dispatch({
+    type: ORDER_LIST_MY_RESET,
+  });
   // reset order state in orderReducers:
   // state = { orders: []}
-  dispatch({ type: USER_LIST_RESET });
+  dispatch({
+    type: USER_LIST_RESET,
+  });
 };
 
 //
@@ -112,10 +123,10 @@ export const register = (name, email, password) => async (dispatch) => {
     });
 
     /* 
-      Let store have userInfo property and data right after the    USER_REGISTER_REQUEST is success (as below)
-      case USER_LOGIN_SUCCESS:
-      return { loading: false, userInfo: action.payload };
-    */
+          Let store have userInfo property and data right after the    USER_REGISTER_REQUEST is success (as below)
+          case USER_LOGIN_SUCCESS:
+          return { loading: false, userInfo: action.payload };
+        */
     dispatch({
       type: USER_LOGIN_SUCCESS,
       payload: data,
@@ -174,7 +185,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
   }
 };
 
-export const updateUserProfile = (user) => async (dispatch, getState) => {
+export const updateUserProfile = (userData) => async (dispatch, getState) => {
   try {
     dispatch({
       type: USER_UPDATE_PROFILE_REQUEST,
@@ -193,12 +204,18 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
 
     const { data } = await axios.put(
       `/api/users/profile`,
-      user,
+      userData,
       axiosHeaderConfig
     );
 
     dispatch({
       type: USER_UPDATE_PROFILE_SUCCESS,
+      payload: data,
+    });
+
+    // trigger and update the "userInfo" property in Redux store
+    dispatch({
+      type: USER_LOGIN_SUCCESS,
       payload: data,
     });
   } catch (error) {
@@ -274,7 +291,9 @@ export const deleteUser = (id) => async (dispatch, getState) => {
 
     await axios.delete(`/api/users/${id}`, axiosHeaderConfig);
 
-    dispatch({ type: USER_DELETE_SUCCESS });
+    dispatch({
+      type: USER_DELETE_SUCCESS,
+    });
   } catch (error) {
     const message =
       error.response && error.response.data.message
@@ -314,9 +333,14 @@ export const updateUser = (user) => async (dispatch, getState) => {
       axiosHeaderConfig
     );
 
-    dispatch({ type: USER_UPDATE_SUCCESS });
+    dispatch({
+      type: USER_UPDATE_SUCCESS,
+    });
 
-    dispatch({ type: USER_DETAILS_SUCCESS, payload: data });
+    dispatch({
+      type: USER_DETAILS_SUCCESS,
+      payload: data,
+    });
   } catch (error) {
     const message =
       error.response && error.response.data.message
