@@ -52,13 +52,16 @@ const ProductEditScreen = ({ match, history }) => {
     }
   }, [dispatch, history, productId, product, successUpdate]);
 
+  //onChange function for uploading image
   const uploadFileHandler = async (e) => {
+    // 1) Get image file and append to formData
     const file = e.target.files[0];
     const formData = new FormData();
     formData.append("image", file);
     formData.append("productId", productId);
     setUploading(true);
 
+    // 2) Upload formData with Axios
     try {
       const config = {
         headers: {
@@ -67,6 +70,7 @@ const ProductEditScreen = ({ match, history }) => {
       };
 
       const { data } = await axios.post("/api/upload", formData, config);
+      // data: /uploads/pid_5f97ec70f293c93c9039d039.jpg
 
       setImage(data);
       setUploading(false);
